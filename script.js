@@ -20,6 +20,7 @@ chatContainer.appendChild(userChatBox)
 setTimeout(() => {
   let html=`<img src="cute-bot-say-users-hello-chatbot-greets-online-consultation_80328-195.avif" alt="" id="aiImage" width="70">
             <div class="ai-chat-area">
+            <div class="loading.webp" alt="" class="load" width="50px"></div>
             </div>`
             let aiChatBox=createChatBox(html,"ai-chat-box")
 chatContainer.appendChild(aiChatBox)
