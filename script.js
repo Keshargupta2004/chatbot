@@ -72,18 +72,20 @@ function createChatBox(html, classes) {
 function handlechatResponse(userMessage) {
   user.message = userMessage;
 
-  let html = `
-    <img src="download.jpeg" width="8%" id="userImage">
-    <div class="user-chat-area">
-        ${user.message}
-        
-      ${
-        user.file.data
-          ? `<img src="data:${user.file.mime_type};base64,${user.file.data}" class="chooseimg"/>`
-          : ""
-      }
-      
-    </div>`;
+let html = `
+  <img src="download.jpeg" width="8%" id="userImage">
+  <div class="user-chat-area">
+
+    ${
+      user.file.data
+        ? `<img src="data:${user.file.mime_type};base64,${user.file.data}" class="chooseimg"/>`
+        : ""
+    }
+
+    <div class="usermsg">${user.message}</div>
+
+  </div>`;
+
 
   prompt.value = "";
 
