@@ -52,9 +52,12 @@ async function generateResponse(aiChatBox) {
       top: chatContainer.scrollHeight,
       behavior: "smooth"
     });
-     image.src=`img.svg`
-  image.classList.remove("choose");
-    user.file = {}
+     image.src=`img.svg`;
+    image.classList.remove("choose");
+    user.file = {
+         mime_type: null,
+      data: null
+    }
     };
   }
 
@@ -116,13 +119,12 @@ submitbtn.addEventListener("click", () => {
     handlechatResponse(prompt.value);
 });
 
-
 imageinput.addEventListener("change", () => {
   const file = imageinput.files[0];
-
   if (!file) return;
 
   let reader = new FileReader();
+
   reader.onload = (e) => {
     let base64string = e.target.result.split(",")[1];
 
@@ -130,11 +132,16 @@ imageinput.addEventListener("change", () => {
       mime_type: file.type,
       data: base64string
     };
+
+    // preview now works correctly
+    image.src = `data:${file.type};base64,${base64string}`;
+    image.classList.add("choose");
   };
-  image.src=`data:${user.file.mime_type};base64,${user.file.data}`
-  image.classList.add("choose");
-         reader.readAsDataURL(file);
+
+  reader.readAsDataURL(file);
 });
+
+
 
 imagebtn.addEventListener("click", () => {
   imageinput.click();
